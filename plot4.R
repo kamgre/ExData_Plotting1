@@ -33,7 +33,6 @@ with(dataset, {
         main = '',
         xlab = '',
         ylab = 'Global Active Power (kilowatts)')
-   
    lines(DateTime, Global_active_power)
    })
 
