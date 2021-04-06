@@ -22,15 +22,14 @@ str(dataset)
 png(filename = 'plot2.png')
 
 # create given plot
-plot(x = dataset$DateTime,
-     y = dataset$Global_active_power,
-     type = 'n',
-     main = '',
-     xlab = '',
-     ylab = 'Global Active Power (kilowatts)')
-
-lines(x = dataset$DateTime,
-      y = dataset$Global_active_power)
+with(dataset, {
+   plot(DateTime, Global_active_power,
+        type = 'n',
+        main = '',
+        xlab = '',
+        ylab = 'Global Active Power (kilowatts)')
+   lines(DateTime, Global_active_power)
+   })
 
 # close png graphics device
 dev.off()
