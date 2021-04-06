@@ -26,36 +26,31 @@ par(mfcol = c(2, 2))
 
 
 # create first subplot
-plot(x = dataset$DateTime,
-y = dataset$Global_active_power,
-type = 'n',
-main = '',
-xlab = '',
-ylab = 'Global Active Power (kilowatts)')
-
-lines(x = dataset$DateTime,
-      y = dataset$Global_active_power)
+with(dataset, {
+   plot(x = dataset$DateTime,
+        y = dataset$Global_active_power,
+        type = 'n',
+        main = '',
+        xlab = '',
+        ylab = 'Global Active Power (kilowatts)')
+   
+   lines(DateTime, Global_active_power)
+   })
 
 
 # create second subplot
-plot(x = dataset$DateTime,
-     y = dataset$Sub_metering_3,
-     type = 'n',
-     main = '',
-     ylim = c(0, max(dataset$Sub_metering_1, dataset$Sub_metering_2, dataset$Sub_metering_3)),
-     xlab = '',
-     ylab = 'Energy sub metering')
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_1)
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_2,
-      col = 'red')
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_3,
-      col = 'blue')
+with(dataset, {
+   plot(DateTime, Sub_metering_1, 
+        type = 'n', 
+        main = '',
+        ylim = c(0, max(Sub_metering_1, Sub_metering_2, Sub_metering_3)),
+        xlab = '',
+        ylab = 'Energy sub metering'
+        )
+   lines(DateTime, Sub_metering_1)
+   lines(DateTime, Sub_metering_2, col = 'red')
+   lines(DateTime, Sub_metering_3, col = 'blue')
+   })
 
 legend('topright',
        bty = 'n',
@@ -64,22 +59,18 @@ legend('topright',
        c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'))
 
 # create third subplot
-with(dataset,
-     plot(DateTime,
-          Voltage,
-          type = 'n'))
-
-lines(dataset$DateTime,
-      dataset$Voltage)
+with(dataset, {
+   plot(DateTime, Voltage,
+        type = 'n')
+   lines(DateTime, Voltage)
+   })
 
 # create fourth subplot
-with(dataset,
-     plot(DateTime, 
-          Global_reactive_power,
-          type = 'n'))
-
-lines(dataset$DateTime,
-      dataset$Global_reactive_power)
+with(dataset, {
+   plot(DateTime, Global_reactive_power,
+        type = 'n')
+   lines(DateTime, Global_reactive_power)
+   })
 
 # close png graphics device
 dev.off()
