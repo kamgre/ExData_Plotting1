@@ -22,24 +22,17 @@ str(dataset)
 png(filename = 'plot3.png')
 
 # create given plot
-plot(x = dataset$DateTime,
-     y = dataset$Sub_metering_3,
-     type = 'n',
-     main = '',
-     ylim = c(0, max(dataset$Sub_metering_1, dataset$Sub_metering_2, dataset$Sub_metering_3)),
-     xlab = '',
-     ylab = 'Energy sub metering')
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_1)
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_2,
-      col = 'red')
-
-lines(x = dataset$DateTime,
-      y = dataset$Sub_metering_3,
-      col = 'blue')
+with(dataset, {
+   plot(DateTime, Sub_metering_3,
+        type = 'n',
+        main = '',
+        ylim = c(0, max(dataset$Sub_metering_1, dataset$Sub_metering_2, dataset$Sub_metering_3)),
+        xlab = '',
+        ylab = 'Energy sub metering')
+   lines(DateTime, Sub_metering_1)
+   lines(DateTime, Sub_metering_2, col = 'red')
+   lines(DateTime, Sub_metering_3, col = 'blue')
+   })
 
 legend('topright',
        col = c('black', 'red', 'blue'),
